@@ -1,17 +1,27 @@
 {
-  "name": "prueba",
+  "name": "kanban_mern",
   "version": "1.0.0",
-  "description": "esto es una prueba",
+  "description": "Kanban project created with MERN STACK , Webpack and Unit Testing",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=testing mocha --recursive --exit",
+    "development": "NODE_ENV=localhost nodemon ./bin/www"
   },
-  "author": "",
+  "author": "Andrés Felipe Jara Nuñez",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "custom-env": "^2.0.1",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.9"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "chai": "^4.3.4",
+    "mocha": "^8.4.0",
+    "mongodb-memory-server": "^6.9.6",
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0",
+    "supertest": "^6.1.3"
   }
 }

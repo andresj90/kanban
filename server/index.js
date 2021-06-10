@@ -1,18 +1,38 @@
-const express = require('express'); 
-const PORT = 3000; 
+require('custom-env').env(true)
+
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const db = require('./models/');
+//routes 
+const user = require('./routes/user.js');
+
+//app
 const app = express();
+var corsOptions = {
+    origin: "http://localhost:8081"
+}
+
+//DB CONNECTION
+// db.connect()
+//             .then((response) => console.log(response))
+//             .catch((error) => console.error(error));
+
+//app use middleware
+app.use(cors(corsOptions));
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+//set por to listen to requests 
+const PORT = process.env.PORT || 8080;
+
 
 app.get('/', (req, res) => {
-    const saludo = "Bienvenido a mi página"; 
     res.json({
-        title: saludo
-    }); 
-}); 
+        hello : ""
+    });
+});
+app.use('/user', user);
 
-
-app.listen(PORT, 'localhost', (err)=> {
-    if(err) return console.log(err.message); 
-    console.log("Connectado al servidor");
-}); 
-
-
+module.exports = app;
